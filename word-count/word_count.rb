@@ -1,8 +1,15 @@
-=begin
-Write your code for the 'Word Count' exercise in this file. Make the tests in
-`word_count_test.rb` pass.
+class Phrase
+  REGEX = /\s+|,|\n|:|\./
+  
+  def initialize(phrase)
+    @words = phrase.downcase.split(REGEX).filter { |word| !word.empty? }
+  end
 
-To get started with TDD, see the `README.md` file in your
-`ruby/word-count` directory.
-=end
-
+  def word_count
+    counts = {}
+    @words.each do |word|
+      counts.key?(word) ? counts[word] += 1 : counts[word] = 1
+    end
+    counts
+  end
+end
